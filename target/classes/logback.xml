@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration debug="false">
+	<!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径 -->
+	<property resource="application.properties" />
+
+
+	<!-- 控制台输出 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}:\t%msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+	
+	
+
+	<!-- 按照每天生成日志文件 -->
+	<appender name="ALL_FILE"	class="ch.qos.logback.core.rolling.RollingFileAppender">
+	
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">  
+			<!--日志文件输出的文件名 -->
+			<FileNamePattern>${logging.path}/all/${spring.application.name}.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+	        <maxFileSize>10MB</maxFileSize>  
+	        <maxHistory>60</maxHistory>  
+	    </rollingPolicy>  
+	    
+		
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}:\t%msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+
+
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>ACCEPT</onMismatch>
+		</filter>
+	</appender>
+
+	<!-- 异步输出 -->
+	<appender name="ALL_FILE_ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+		<!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+		<discardingThreshold>0</discardingThreshold>
+		<!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+		<queueSize>16</queueSize>
+		<!-- 添加附加的appender,最多只能添加一个 -->
+		<appender-ref ref="ALL_FILE" />
+	</appender>
+
+
+
+	
+
+
+
+
+	<!-- 按照每天生成日志文件 -->
+	<appender name="WARN_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">  
+			<!--日志文件输出的文件名 -->
+			<FileNamePattern>${logging.path}/warn/${spring.application.name}.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+	        <maxFileSize>10MB</maxFileSize>  
+	        <maxHistory>60</maxHistory>  
+	    </rollingPolicy>  
+	    
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}:\t%msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>WARN</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		
+	</appender>
+
+	<!-- 异步输出 -->
+	<appender name="WARN_FILE_ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+		<!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+		<discardingThreshold>0</discardingThreshold>
+		<!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+		<queueSize>4</queueSize>
+		<!-- 添加附加的appender,最多只能添加一个 -->
+		<appender-ref ref="WARN_FILE" />
+	</appender>
+
+
+
+
+
+	<!-- 按照每天生成日志文件 -->
+	<appender name="ERR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">  
+			<!--日志文件输出的文件名 -->
+			<FileNamePattern>${logging.path}/err/${spring.application.name}.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+	        <maxFileSize>10MB</maxFileSize>  
+	        <maxHistory>60</maxHistory>  
+	    </rollingPolicy>  
+	    
+
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}:\t%msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+		
+
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<!-- 异步输出 -->
+	<appender name="ERR_FILE_ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+		<!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+		<discardingThreshold>0</discardingThreshold>
+		<!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+		<queueSize>4</queueSize>
+		<!-- 添加附加的appender,最多只能添加一个 -->
+		<appender-ref ref="ERR_FILE" />
+	</appender>
+	
+
+	<!-- 
+	<appender name="LOGSTASH"
+		class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+		<remoteHost>127.0.0.1</remoteHost>
+		<port>514</port>
+		<encoder charset="UTF-8"
+			class="net.logstash.logback.encoder.LogstashEncoder">
+			<customFields>{"appname":"${spring.application.name}"}</customFields>
+			<includeCallerData>true</includeCallerData>
+		</encoder>
+		<keepAliveDuration>5 minutes</keepAliveDuration>
+		<includeCallerData>true</includeCallerData>
+	</appender>
+	-->
+
+
+
+	<!--myibatis log configure -->
+	<logger name="com.apache.ibatis" level="TRACE" />
+	<logger name="java.sql.Connection" level="DEBUG" />
+	<logger name="java.sql.Statement" level="DEBUG" />
+	<logger name="java.sql.PreparedStatement" level="DEBUG" />
+
+	<!-- 日志输出级别 -->
+	<root level="${logging.level.root}">
+
+		<!-- 
+		
+		
+		<appender-ref ref="LOGSTASH" /> 
+		<appender-ref ref="ALL_FILE_ASYNC"/> 
+		<appender-ref ref="STDOUT" /> 
+			
+			
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="HTTP" />
+		<appender-ref ref="STDOUT" />
+
+		<appender-ref ref="STDOUT" />
+				<appender-ref ref="HTTP" />
+		
+
+		-->
+
+		<appender-ref ref="ALL_FILE_ASYNC" />
+		<appender-ref ref="WARN_FILE_ASYNC" />
+		<appender-ref ref="ERR_FILE_ASYNC" />
+		
+		<appender-ref ref="STDOUT" />
+		
+
+
+
+	</root>
+</configuration>
