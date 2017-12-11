@@ -169,11 +169,8 @@
       #{deliverStatus,jdbcType=INTEGER}, #{deliverExpress,jdbcType=VARCHAR}, #{deliverExpressId,jdbcType=VARCHAR}, 
       #{createby,jdbcType=BIGINT}, #{createtime,jdbcType=TIMESTAMP}, #{createdate,jdbcType=DATE}, 
       #{createip,jdbcType=VARCHAR}, #{updateby,jdbcType=BIGINT}, #{updatetime,jdbcType=TIMESTAMP}, 
-      #{updateip,jdbcType=VARCHAR}, #{converted,jdbcType=INTEGER}, 
-      #{browserType,jdbcType=VARCHAR}, 
-      #{browserName,jdbcType=VARCHAR}, 
-      #{browserOs,jdbcType=VARCHAR}
-      )
+      #{updateip,jdbcType=VARCHAR}, #{converted,jdbcType=INTEGER}, #{browserType,jdbcType=VARCHAR}, 
+      #{browserName,jdbcType=VARCHAR}, #{browserOs,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ec.orders.model.Orders">
     <!--
