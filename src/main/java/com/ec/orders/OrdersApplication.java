@@ -23,9 +23,9 @@ public class OrdersApplication {
 		SpringApplication.run(OrdersApplication.class, args);
 	}
 	
-	@Scheduled(cron = "${id.reset.cron:0 1 0 * * ?}")
+	@Scheduled(cron = "${cron.reset-id:0 1 0 * * ?}")
 	private void scheduler() {
-		LOGGER.info("Reset ID:"+IDGen.reset());
+		LOGGER.info("RESET ID:"+IDGen.reset());
 	}
 	
 }

@@ -1,5 +1,6 @@
 package com.ec.orders.dao;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -65,5 +66,7 @@ public interface OrdersMapper {
     int updateByExample(@Param("record") Orders record, @Param("example") OrdersExample example);
     
     int createTable();
+    int insertByList(Collection<Orders> records);
+    
 
 }

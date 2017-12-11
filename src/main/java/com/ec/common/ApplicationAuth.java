@@ -21,6 +21,11 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 
 import com.ec.common.model.Response;
+import com.ec.common.utils.IDGen;
+
+import eu.bitwalker.useragentutils.Browser;
+import eu.bitwalker.useragentutils.OperatingSystem;
+import eu.bitwalker.useragentutils.UserAgent;
 
 @ConditionalOnProperty(prefix = "security", name = "filter", matchIfMissing = true)
 @Configuration
@@ -45,17 +50,28 @@ public class ApplicationAuth extends org.springframework.web.servlet.config.anno
 		if(!IP_MAP.containsKey(ip))
 			IP_MAP.put(ip, new AtomicInteger(0));
 		
+		
 		if(IP_MAP.get(ip).incrementAndGet()<=ipLimits)
 			return true;
 		
-		response.getWriter().println(new Response(Response.Code.FAIL.getValue(),"限购10次！如有任何问题请联系我们的工作人员。").toString());
+		response.getWriter().println(new Response(Response.Code.FAIL.getValue(),"PER-IP SESSION LIMIT "+ipLimits).toString());
 		return false;
 	}
 
 	private boolean authorityLogin(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		if(request.getRequestURI().indexOf(adminPath)<0)return true;
 		if(request.getSession().getAttribute(ApplicationAttribute.AUTHORIZED_ID) != null)return true;
-		response.getWriter().println(new Response(Response.Code.FAIL.getValue(),"限购10次！如有任何问题请联系我们的工作人员。").toString());
+		response.getWriter().println(new Response(Response.Code.FAIL.getValue(),"NOT LOGIN").toString());
+		return false;
+	}
+	
+	private boolean authorityBrowser(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));   
+		Browser browser = userAgent.getBrowser();    
+		OperatingSystem os = userAgent.getOperatingSystem();  
+		
+		if(browser.getBrowserType().toString().toUpperCase().indexOf("BROWSER")>-1)return true;
+		response.getWriter().println(new Response(Response.Code.FAIL.getValue(),"NOT BROWSER").toString());
 		return false;
 	}
 
@@ -79,7 +95,7 @@ public class ApplicationAuth extends org.springframework.web.servlet.config.anno
 				res.setHeader("Access-Control-Max-Age", "3600");  
 				res.setHeader("Access-Control-Allow-Headers", "x-requested-with");  
 		        
-				return authorityIP(req,res)&&authorityLogin(req,res);
+				return authorityIP(req,res)&&authorityLogin(req,res)&&authorityBrowser(req,res);
 			}
 			
 			@Override
@@ -98,9 +114,10 @@ public class ApplicationAuth extends org.springframework.web.servlet.config.anno
 		};
 	}
 	
-	@Scheduled(cron = "${id.reset.cron:0 1 0 * * ?}")
+	@Scheduled(cron = "${security.filter.ip.limits.clean.cron:0 1 0 * * ?}")
 	private void scheduler() {
-		
+		LOGGER.info("CLEAN IP LIMIT:"+IP_MAP.size());
+		IP_MAP.clear();
 	}
 
 }

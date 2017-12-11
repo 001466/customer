@@ -22,13 +22,11 @@ com\ec\common\utils\FileUtil.class
 com\ec\common\model\BaseEntity.class
 com\ec\common\utils\ObjectUtils.class
 com\ec\orders\model\OrdersExample$Criteria.class
-com\ec\orders\controller\OrderController$2.class
 com\ec\orders\model\OrdersExample$GeneratedCriteria.class
 com\ec\common\ApplicationAuth.class
 com\ec\common\model\Response$Code.class
 com\ec\common\service\QueueService.class
 com\ec\common\service\QueueService$DequeueTask.class
-com\ec\orders\controller\OrderController$3.class
 com\ec\common\Authorized.class
 com\ec\common\utils\IDGen.class
 com\ec\orders\controller\OrderController.class

@@ -1,12 +1,20 @@
 package com.ec.orders.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.locks.LockSupport;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +25,7 @@ import com.ec.common.controller.BaseController;
 import com.ec.common.model.Response;
 import com.ec.common.service.QueueExec;
 import com.ec.common.utils.IDGen;
+import com.ec.orders.OrdersApplication;
 import com.ec.orders.model.Orders;
 import com.ec.orders.model.OrdersExample;
 import com.ec.orders.queue.OrdersQueueService;
@@ -30,14 +39,24 @@ import com.ec.orders.service.OrdersService;
  */
 @RestController
 @RequestMapping(value = "/order")
+@EnableScheduling
 public class OrderController extends BaseController {
 
-	
+	private   static final Logger   LOGGER = LoggerFactory.getLogger(OrderController.class);
+
 	@Autowired
 	OrdersQueueService ordersQueueService;
 	
 	@Autowired
 	OrdersService ordersService ;
+	
+	@Value("${security.controller.order.inser.limits:60}")
+	private int limits;
+	
+	
+	
+	protected static BlockingQueue<Orders> orderQueue = new LinkedBlockingQueue<Orders>();
+
 
 	@RequestMapping(method=RequestMethod.POST)
 	public Response<String> addModelAttribute(@ModelAttribute Orders orders,HttpServletRequest request) {
@@ -45,18 +64,8 @@ public class OrderController extends BaseController {
 	}
 	@RequestMapping(method=RequestMethod.POST,produces = { "application/json" }, consumes = { "application/json" })
 	public Response<String> addRequestBody(@RequestBody Orders orders,HttpServletRequest request) {
-		ordersQueueService.enqueue(new QueueExec<Orders>(orders) {
-			@Override
-			public void exec() {
-				
-				orders.setId(IDGen.next());
-				orders.setCreatedate(new Date());
-				orders.setCreatetime(new Date());
-				orders.setCreateip(request.getRemoteAddr());
-				
-				ordersService.insert(orders);
-			}
-		});
+		orders.setCreateip(request.getRemoteAddr());
+		orderQueue.offer(orders);
 		return new Response<String>(Response.Code.SUCCESS.getValue());
 	}
 	
@@ -80,8 +89,30 @@ public class OrderController extends BaseController {
 	}
 	
 	
+	@Scheduled(cron = "${security.controller.order.inser.cron:0 0/1 * * * ?}")
+	private void scheduler() {
+		
+		if(orderQueue.size()==0)return ;
+		
+		List<Orders> list=new ArrayList<>();
+		orderQueue.drainTo(list);
+		int converted=list.size()>limits?-1:0;
+		
+		for(Orders orders:list){
+			orders.setConverted(converted);
+			
+			orders.setId(IDGen.next());
+			orders.setCreatedate(new Date());
+			orders.setCreatetime(new Date());
+		}
 	
-	@RequestMapping(method = { RequestMethod.GET })
+		ordersService.insert(list);
+		LOGGER.info("Insert orders "+list.size());
+	}
+	
+	
+	
+/*	@RequestMapping(method = { RequestMethod.GET })
 	public Response<List<Orders>> get(HttpServletRequest request) throws Exception {
 		Response<List<Orders>> res=new Response<List<Orders>>(Response.Code.SUCCESS.getValue());
 		
@@ -102,7 +133,7 @@ public class OrderController extends BaseController {
 		return res;
 		
 		
-	}
+	}*/
 	
 
 

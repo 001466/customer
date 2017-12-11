@@ -22,10 +22,7 @@ public class TestController  {
 	private static final Logger log = LoggerFactory.getLogger(TestController.class);
 
 	@RequestMapping()
-	public void  test(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		System.err.println(request.getRequestURL());
-		response.sendRedirect("https://www.baidu.com");
-	}
+	public void  test(HttpServletRequest request, HttpServletResponse response) throws IOException {}
 
  
 

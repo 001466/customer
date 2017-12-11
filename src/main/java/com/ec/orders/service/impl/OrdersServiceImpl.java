@@ -1,5 +1,6 @@
 package com.ec.orders.service.impl;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,22 @@ public class OrdersServiceImpl implements OrdersService {
 			}
 			throw e;
 		}
+	}
+
+	@Override
+	public int insert(Collection<Orders> record) {
+
+		try {
+			return ordersMapper.insertByList(record);
+		} catch (Exception e) {
+			if (e instanceof java.sql.SQLSyntaxErrorException
+					|| e.getCause() instanceof java.sql.SQLSyntaxErrorException) {
+				ordersMapper.createTable();
+				return ordersMapper.insertByList(record);
+			}
+			throw e;
+		}
+	
 	}
 
 }
