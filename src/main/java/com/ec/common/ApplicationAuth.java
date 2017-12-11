@@ -55,6 +55,7 @@ public class ApplicationAuth extends org.springframework.web.servlet.config.anno
 			return true;
 		
 		response.getWriter().println(new Response(Response.Code.FAIL.getValue(),"PER-IP SESSION LIMIT "+ipLimits).toString());
+		LOGGER.warn("PER-IP SESSION LIMIT "+request.getRemoteAddr());
 		return false;
 	}
 
@@ -62,6 +63,7 @@ public class ApplicationAuth extends org.springframework.web.servlet.config.anno
 		if(request.getRequestURI().indexOf(adminPath)<0)return true;
 		if(request.getSession().getAttribute(ApplicationAttribute.AUTHORIZED_ID) != null)return true;
 		response.getWriter().println(new Response(Response.Code.FAIL.getValue(),"NOT LOGIN").toString());
+		LOGGER.warn("NOT LOGIN "+request.getRemoteAddr());
 		return false;
 	}
 	
@@ -72,6 +74,7 @@ public class ApplicationAuth extends org.springframework.web.servlet.config.anno
 		
 		if(browser.getBrowserType().toString().toUpperCase().indexOf("BROWSER")>-1)return true;
 		response.getWriter().println(new Response(Response.Code.FAIL.getValue(),"NOT BROWSER").toString());
+		LOGGER.warn("NOT BROWSER "+request.getRemoteAddr());
 		return false;
 	}
 

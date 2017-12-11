@@ -35,6 +35,9 @@
     <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
     <result column="updateip" jdbcType="VARCHAR" property="updateip" />
     <result column="converted" jdbcType="INTEGER" property="converted" />
+    <result column="browser_type" jdbcType="VARCHAR" property="browserType" />
+    <result column="browser_name" jdbcType="VARCHAR" property="browserName" />
+    <result column="browser_os" jdbcType="VARCHAR" property="browserOs" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--
@@ -111,7 +114,7 @@
     custom_from, product_id, product_branch, product_material, product_prices, deliver_province, 
     deliver_city, deliver_county, deliver_adderss, deliver_time, deliver_status, deliver_express, 
     deliver_express_id, createby, createtime, createdate, createip, updateby, updatetime, 
-    updateip, converted
+    updateip, converted, browser_type, browser_name, browser_os
   </sql>
   <select id="selectByExample" parameterType="com.ec.orders.model.OrdersExample" resultMap="BaseResultMap">
     <!--
@@ -155,7 +158,8 @@
       deliver_status, deliver_express, deliver_express_id, 
       createby, createtime, createdate, 
       createip, updateby, updatetime, 
-      updateip, converted)
+      updateip, converted, browser_type, 
+      browser_name, browser_os)
     values (#{id,jdbcType=BIGINT}, #{type,jdbcType=VARCHAR}, #{customName,jdbcType=VARCHAR}, 
       #{customMobile,jdbcType=VARCHAR}, #{customEmail,jdbcType=VARCHAR}, #{customWechat,jdbcType=VARCHAR}, 
       #{customQq,jdbcType=VARCHAR}, #{customContent,jdbcType=VARCHAR}, #{customFrom,jdbcType=VARCHAR}, 
@@ -165,7 +169,11 @@
       #{deliverStatus,jdbcType=INTEGER}, #{deliverExpress,jdbcType=VARCHAR}, #{deliverExpressId,jdbcType=VARCHAR}, 
       #{createby,jdbcType=BIGINT}, #{createtime,jdbcType=TIMESTAMP}, #{createdate,jdbcType=DATE}, 
       #{createip,jdbcType=VARCHAR}, #{updateby,jdbcType=BIGINT}, #{updatetime,jdbcType=TIMESTAMP}, 
-      #{updateip,jdbcType=VARCHAR}, #{converted,jdbcType=INTEGER})
+      #{updateip,jdbcType=VARCHAR}, #{converted,jdbcType=INTEGER}, 
+      #{browserType,jdbcType=VARCHAR}, 
+      #{browserName,jdbcType=VARCHAR}, 
+      #{browserOs,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.ec.orders.model.Orders">
     <!--
@@ -261,6 +269,15 @@
       <if test="converted != null">
         converted,
       </if>
+      <if test="browserType != null">
+        browser_type,
+      </if>
+      <if test="browserName != null">
+        browser_name,
+      </if>
+      <if test="browserOs != null">
+        browser_os,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -349,6 +366,15 @@
       </if>
       <if test="converted != null">
         #{converted,jdbcType=INTEGER},
+      </if>
+      <if test="browserType != null">
+        #{browserType,jdbcType=VARCHAR},
+      </if>
+      <if test="browserName != null">
+        #{browserName,jdbcType=VARCHAR},
+      </if>
+      <if test="browserOs != null">
+        #{browserOs,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -456,6 +482,15 @@
       <if test="record.converted != null">
         converted = #{record.converted,jdbcType=INTEGER},
       </if>
+      <if test="record.browserType != null">
+        browser_type = #{record.browserType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.browserName != null">
+        browser_name = #{record.browserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.browserOs != null">
+        browser_os = #{record.browserOs,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -495,7 +530,10 @@
       updateby = #{record.updateby,jdbcType=BIGINT},
       updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
       updateip = #{record.updateip,jdbcType=VARCHAR},
-      converted = #{record.converted,jdbcType=INTEGER}
+      converted = #{record.converted,jdbcType=INTEGER},
+      browser_type = #{record.browserType,jdbcType=VARCHAR},
+      browser_name = #{record.browserName,jdbcType=VARCHAR},
+      browser_os = #{record.browserOs,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -505,9 +543,6 @@
   
   
   <insert id="insertByList" parameterType="com.ec.orders.model.Orders">
-  
-    
-    
     insert into orders (id, type, custom_name, 
       custom_mobile, custom_email, custom_wechat, 
       custom_qq, custom_content, custom_from, 
@@ -517,9 +552,11 @@
       deliver_status, deliver_express, deliver_express_id, 
       createby, createtime, createdate, 
       createip, updateby, updatetime, 
-      updateip, converted)
+      updateip, converted, browser_type, 
+      browser_name, browser_os
+      )
     values
-    <foreach collection="list" item="item" index="index" separator="," >  
+    <foreach collection="list" index="index" item="item" separator=",">  
         (
           #{item.id,jdbcType=BIGINT}, 
           #{item.type,jdbcType=VARCHAR}, 
@@ -549,7 +586,10 @@
 	      #{item.updateby,jdbcType=BIGINT}, 
 	      #{item.updatetime,jdbcType=TIMESTAMP}, 
 	      #{item.updateip,jdbcType=VARCHAR}, 
-	      #{item.converted,jdbcType=INTEGER}
+	      #{item.converted,jdbcType=INTEGER},
+	      #{item.browserType,jdbcType=VARCHAR}, 
+      	  #{item.browserName,jdbcType=VARCHAR}, 
+      	  #{item.browserOs,jdbcType=VARCHAR}
         )  
     </foreach> 
     
@@ -589,6 +629,9 @@
 		   updatetime           datetime,
 		   updateip             varchar(64),
 		   converted            int comment '0未转化1已转化',
+		   browser_type         varchar(64),
+		   browser_name         varchar(64),
+		   browser_os           varchar(64),
 		   primary key (id)
 		)
 		ENGINE=InnoDB DEFAULT CHARSET=utf8;

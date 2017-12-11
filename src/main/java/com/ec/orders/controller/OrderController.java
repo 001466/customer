@@ -31,6 +31,10 @@ import com.ec.orders.model.OrdersExample;
 import com.ec.orders.queue.OrdersQueueService;
 import com.ec.orders.service.OrdersService;
 
+import eu.bitwalker.useragentutils.Browser;
+import eu.bitwalker.useragentutils.OperatingSystem;
+import eu.bitwalker.useragentutils.UserAgent;
+
 
 /**
  *
@@ -64,6 +68,14 @@ public class OrderController extends BaseController {
 	}
 	@RequestMapping(method=RequestMethod.POST,produces = { "application/json" }, consumes = { "application/json" })
 	public Response<String> addRequestBody(@RequestBody Orders orders,HttpServletRequest request) {
+		
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));   
+		Browser browser = userAgent.getBrowser();    
+		OperatingSystem os = userAgent.getOperatingSystem();  
+		
+		orders.setBrowserName(browser.getName());
+		orders.setBrowserType(browser.getBrowserType().toString());
+		orders.setBrowserOs(os.getName());
 		orders.setCreateip(request.getRemoteAddr());
 		orderQueue.offer(orders);
 		return new Response<String>(Response.Code.SUCCESS.getValue());

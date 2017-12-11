@@ -2162,6 +2162,216 @@ public class OrdersExample {
             addCriterion("converted not between", value1, value2, "converted");
             return (Criteria) this;
         }
+
+        public Criteria andBrowserTypeIsNull() {
+            addCriterion("browser_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserTypeIsNotNull() {
+            addCriterion("browser_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserTypeEqualTo(String value) {
+            addCriterion("browser_type =", value, "browserType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserTypeNotEqualTo(String value) {
+            addCriterion("browser_type <>", value, "browserType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserTypeGreaterThan(String value) {
+            addCriterion("browser_type >", value, "browserType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("browser_type >=", value, "browserType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserTypeLessThan(String value) {
+            addCriterion("browser_type <", value, "browserType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserTypeLessThanOrEqualTo(String value) {
+            addCriterion("browser_type <=", value, "browserType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserTypeLike(String value) {
+            addCriterion("browser_type like", value, "browserType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserTypeNotLike(String value) {
+            addCriterion("browser_type not like", value, "browserType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserTypeIn(List<String> values) {
+            addCriterion("browser_type in", values, "browserType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserTypeNotIn(List<String> values) {
+            addCriterion("browser_type not in", values, "browserType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserTypeBetween(String value1, String value2) {
+            addCriterion("browser_type between", value1, value2, "browserType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserTypeNotBetween(String value1, String value2) {
+            addCriterion("browser_type not between", value1, value2, "browserType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserNameIsNull() {
+            addCriterion("browser_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserNameIsNotNull() {
+            addCriterion("browser_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserNameEqualTo(String value) {
+            addCriterion("browser_name =", value, "browserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserNameNotEqualTo(String value) {
+            addCriterion("browser_name <>", value, "browserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserNameGreaterThan(String value) {
+            addCriterion("browser_name >", value, "browserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserNameGreaterThanOrEqualTo(String value) {
+            addCriterion("browser_name >=", value, "browserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserNameLessThan(String value) {
+            addCriterion("browser_name <", value, "browserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserNameLessThanOrEqualTo(String value) {
+            addCriterion("browser_name <=", value, "browserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserNameLike(String value) {
+            addCriterion("browser_name like", value, "browserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserNameNotLike(String value) {
+            addCriterion("browser_name not like", value, "browserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserNameIn(List<String> values) {
+            addCriterion("browser_name in", values, "browserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserNameNotIn(List<String> values) {
+            addCriterion("browser_name not in", values, "browserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserNameBetween(String value1, String value2) {
+            addCriterion("browser_name between", value1, value2, "browserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserNameNotBetween(String value1, String value2) {
+            addCriterion("browser_name not between", value1, value2, "browserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserOsIsNull() {
+            addCriterion("browser_os is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserOsIsNotNull() {
+            addCriterion("browser_os is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserOsEqualTo(String value) {
+            addCriterion("browser_os =", value, "browserOs");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserOsNotEqualTo(String value) {
+            addCriterion("browser_os <>", value, "browserOs");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserOsGreaterThan(String value) {
+            addCriterion("browser_os >", value, "browserOs");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserOsGreaterThanOrEqualTo(String value) {
+            addCriterion("browser_os >=", value, "browserOs");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserOsLessThan(String value) {
+            addCriterion("browser_os <", value, "browserOs");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserOsLessThanOrEqualTo(String value) {
+            addCriterion("browser_os <=", value, "browserOs");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserOsLike(String value) {
+            addCriterion("browser_os like", value, "browserOs");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserOsNotLike(String value) {
+            addCriterion("browser_os not like", value, "browserOs");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserOsIn(List<String> values) {
+            addCriterion("browser_os in", values, "browserOs");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserOsNotIn(List<String> values) {
+            addCriterion("browser_os not in", values, "browserOs");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserOsBetween(String value1, String value2) {
+            addCriterion("browser_os between", value1, value2, "browserOs");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserOsNotBetween(String value1, String value2) {
+            addCriterion("browser_os not between", value1, value2, "browserOs");
+            return (Criteria) this;
+        }
     }
 
     /**
