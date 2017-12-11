@@ -54,7 +54,7 @@ public class ApplicationAuth extends org.springframework.web.servlet.config.anno
 		if(IP_MAP.get(ip).incrementAndGet()<=ipLimits)
 			return true;
 		
-		response.getWriter().println(new Response(Response.Code.FAIL.getValue(),"PER-IP SESSION LIMIT "+ipLimits).toString());
+		response.getWriter().println(new Response(Response.Code.PER_IP_LIMIT.getValue(),"PER-IP SESSION LIMIT "+ipLimits).toString());
 		LOGGER.warn("PER-IP SESSION LIMIT "+request.getRemoteAddr());
 		return false;
 	}
@@ -62,7 +62,7 @@ public class ApplicationAuth extends org.springframework.web.servlet.config.anno
 	private boolean authorityLogin(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		if(request.getRequestURI().indexOf(adminPath)<0)return true;
 		if(request.getSession().getAttribute(ApplicationAttribute.AUTHORIZED_ID) != null)return true;
-		response.getWriter().println(new Response(Response.Code.FAIL.getValue(),"NOT LOGIN").toString());
+		response.getWriter().println(new Response(Response.Code.NOT_LOGIN.getValue(),"NOT LOGIN").toString());
 		LOGGER.warn("NOT LOGIN "+request.getRemoteAddr());
 		return false;
 	}
@@ -73,7 +73,7 @@ public class ApplicationAuth extends org.springframework.web.servlet.config.anno
 		OperatingSystem os = userAgent.getOperatingSystem();  
 		
 		if(browser.getBrowserType().toString().toUpperCase().indexOf("BROWSER")>-1)return true;
-		response.getWriter().println(new Response(Response.Code.FAIL.getValue(),"NOT BROWSER").toString());
+		response.getWriter().println(new Response(Response.Code.NOT_BROWSER.getValue(),"NOT BROWSER").toString());
 		LOGGER.warn("NOT BROWSER "+request.getRemoteAddr());
 		return false;
 	}

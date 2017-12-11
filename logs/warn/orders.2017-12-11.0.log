@@ -1,0 +1,2 @@
+2017-12-11 16:27:01.597 [main] WARN  o.s.b.a.t.AbstractTemplateResolverConfiguration:	Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2017-12-11 16:32:45.409 [main] WARN  o.s.b.a.t.AbstractTemplateResolverConfiguration:	Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
