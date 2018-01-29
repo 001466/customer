@@ -1,11 +1,10 @@
-package com.ec.orders.controller;
+package com.ec.order.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.locks.LockSupport;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,11 +24,9 @@ import com.ec.common.controller.BaseController;
 import com.ec.common.model.Response;
 import com.ec.common.service.QueueExec;
 import com.ec.common.utils.IDGen;
-import com.ec.orders.OrdersApplication;
-import com.ec.orders.model.Orders;
-import com.ec.orders.model.OrdersExample;
-import com.ec.orders.queue.OrdersQueueService;
-import com.ec.orders.service.OrdersService;
+import com.ec.order.model.Orders;
+import com.ec.order.queue.OrdersQueueService;
+import com.ec.order.service.OrdersService;
 
 import eu.bitwalker.useragentutils.Browser;
 import eu.bitwalker.useragentutils.OperatingSystem;

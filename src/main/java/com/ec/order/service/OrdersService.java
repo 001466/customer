@@ -1,10 +1,10 @@
-package com.ec.orders.service;
+package com.ec.order.service;
 
 import java.util.Collection;
 import java.util.List;
 
-import com.ec.orders.model.Orders;
-import com.ec.orders.model.OrdersExample;
+import com.ec.order.model.Orders;
+import com.ec.order.model.OrdersExample;
 
 public interface OrdersService {
 	public int insert(Orders record);

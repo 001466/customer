@@ -1,4 +1,4 @@
-package com.ec.orders;
+package com.ec.order;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
@@ -12,7 +12,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import com.ec.common.utils.IDGen;
 @SpringBootApplication
 @ComponentScan(basePackages={"com.ec"})
-@MapperScan("com.ec.orders.dao")
+@MapperScan("com.ec.order.dao")
 @EnableScheduling
 public class OrdersApplication {
 	

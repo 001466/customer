@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ec</groupId>
-	<artifactId>orders</artifactId>
+	<artifactId>order</artifactId>
 	<version>2.0.2</version>
 	<name>ec orders</name>
 	<description>ec orders</description>
@@ -70,6 +70,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>service</finalName> 
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

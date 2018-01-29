@@ -2,7 +2,7 @@
 echo "执行启动脚本..."
 
 #JAR路径
-JAR_MAIN=busineService.jar
+JAR_MAIN=service.jar
 
 #获取PID
 pid=0

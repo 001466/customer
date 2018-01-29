@@ -1,4 +1,4 @@
-package com.ec.orders.model;
+package com.ec.order.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
