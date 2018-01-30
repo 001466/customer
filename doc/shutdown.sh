@@ -1,10 +1,10 @@
 #!/bin/sh
-echo "执行停止脚本..."
+echo "Shutdown..."
 
-#JAR路径
-JAR_MAIN=busineService.jar
+#JAR path
+JAR_MAIN=app.jar
 
-#获取PID
+#Get PID
 pid=0
 
 getPid(){
@@ -16,16 +16,16 @@ getPid(){
     fi
 }
 
-#检查是否有已启动的服务
+#Check to see if there is a started service
 shutdown(){
     getPid
     if [ -n "$pid" ]; then
-        echo "检查到服务已启动... $pid"
+        echo "Find started service... $pid"
         echo "Kill $pid"
         kill -9 $pid
-        echo "服务已停止..."
+        echo "Service stopped..."
     else
-        echo "未检测到服务..."
+        echo "Can not find started service..."
     fi
 }
 shutdown

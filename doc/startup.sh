@@ -1,10 +1,10 @@
 #!/bin/sh
-echo "执行启动脚本..."
+echo "Startup..."
 
-#JAR路径
-JAR_MAIN=service.jar
+#JAR path
+JAR_MAIN=app.jar
 
-#获取PID
+#Get PID
 pid=0
 
 getPid(){
@@ -16,11 +16,11 @@ getPid(){
     fi
 }
 
-#检查是否有已启动的服务
+#Check to see if there is a started service
 startup(){
     getPid
     if [ -n "$pid" ]; then
-        echo "检查到服务已启动... $pid"
+        echo "Find started service... $pid"
     else    
         exec java -server -jar  $JAR_MAIN &
     fi
