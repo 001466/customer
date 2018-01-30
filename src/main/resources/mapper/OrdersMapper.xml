@@ -538,6 +538,47 @@
   
   
   
+  <update id="createTable">
+       
+		create table orders
+		(
+		   id                   bigint not null,
+		   type                 varchar(512),
+		   custom_name          varchar(512),
+		   custom_mobile        varchar(64),
+		   custom_email         varchar(512),
+		   custom_wechat        varchar(512),
+		   custom_qq            varchar(512),
+		   custom_content       varchar(512),
+		   custom_from          varchar(512),
+		   product_id           varchar(512),
+		   product_branch       varchar(512),
+		   product_material     varchar(512),
+		   product_prices       decimal(8,2),
+		   deliver_province     varchar(64),
+		   deliver_city         varchar(64),
+		   deliver_county       char(10),
+		   deliver_adderss      varchar(512),
+		   deliver_time         varchar(512),
+		   deliver_status       int comment '0未发货1已发货-1已退货',
+		   deliver_express      varchar(512),
+		   deliver_express_id   varchar(64),
+		   createby             bigint,
+		   createtime           datetime,
+		   createdate           date,
+		   createip             varchar(64),
+		   updateby             bigint,
+		   updatetime           datetime,
+		   updateip             varchar(64),
+		   converted            int comment '0未转化1已转化',
+		   browser_type         varchar(64),
+		   browser_name         varchar(64),
+		   browser_os           varchar(64),
+		   primary key (id)
+		)
+		ENGINE=InnoDB DEFAULT CHARSET=utf8;
+		
+  </update>
   
   <insert id="insertByList" parameterType="com.ec.order.model.Orders">
     insert into orders (id, type, custom_name, 
@@ -593,45 +634,4 @@
      
   </insert>
   
-  <update id="createTable">
-       
-		create table orders
-		(
-		   id                   bigint not null,
-		   type                 varchar(512),
-		   custom_name          varchar(512),
-		   custom_mobile        varchar(64),
-		   custom_email         varchar(512),
-		   custom_wechat        varchar(512),
-		   custom_qq            varchar(512),
-		   custom_content       varchar(512),
-		   custom_from          varchar(512),
-		   product_id           varchar(512),
-		   product_branch       varchar(512),
-		   product_material     varchar(512),
-		   product_prices       decimal(8,2),
-		   deliver_province     varchar(64),
-		   deliver_city         varchar(64),
-		   deliver_county       char(10),
-		   deliver_adderss      varchar(512),
-		   deliver_time         varchar(512),
-		   deliver_status       int comment '0未发货1已发货-1已退货',
-		   deliver_express      varchar(512),
-		   deliver_express_id   varchar(64),
-		   createby             bigint,
-		   createtime           datetime,
-		   createdate           date,
-		   createip             varchar(64),
-		   updateby             bigint,
-		   updatetime           datetime,
-		   updateip             varchar(64),
-		   converted            int comment '0未转化1已转化',
-		   browser_type         varchar(64),
-		   browser_name         varchar(64),
-		   browser_os           varchar(64),
-		   primary key (id)
-		)
-		ENGINE=InnoDB DEFAULT CHARSET=utf8;
-		
-  </update>
 </mapper>

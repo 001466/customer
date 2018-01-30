@@ -23,6 +23,8 @@ startup(){
         echo "Find started service... $pid"
     else    
         exec java -server -jar  $JAR_MAIN &
+        getPid
+        echo "Service started ... $pid"
     fi
 }
 startup
