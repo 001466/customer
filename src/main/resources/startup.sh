@@ -2,7 +2,7 @@
 echo "Startup..."
 
 #JAR path
-JAR_MAIN=app.jar
+JAR_MAIN=ordersvr.jar
 
 #Get PID
 pid=0

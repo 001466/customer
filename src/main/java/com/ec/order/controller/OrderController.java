@@ -39,7 +39,6 @@ import eu.bitwalker.useragentutils.UserAgent;
  *
  */
 @RestController
-@RequestMapping(value = "/order")
 @EnableScheduling
 public class OrderController extends BaseController {
 
@@ -59,11 +58,11 @@ public class OrderController extends BaseController {
 	protected static BlockingQueue<Orders> orderQueue = new LinkedBlockingQueue<Orders>();
 
 
-	@RequestMapping(method=RequestMethod.POST)
+	@RequestMapping(path={"/add"})
 	public Response<String> addModelAttribute(@ModelAttribute Orders orders,HttpServletRequest request) {
 		return addRequestBody(orders,request);
 	}
-	@RequestMapping(method=RequestMethod.POST,produces = { "application/json" }, consumes = { "application/json" })
+	@RequestMapping(path={"/add"},produces = { "application/json" }, consumes = { "application/json" })
 	public Response<String> addRequestBody(@RequestBody Orders orders,HttpServletRequest request) {
 		
 		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));   
@@ -81,21 +80,7 @@ public class OrderController extends BaseController {
 	
 	
 	
-	@RequestMapping(method=RequestMethod.PUT)
-	public Response<String> modModelAttribute(@ModelAttribute Orders orders,HttpServletRequest request) {
-		return modRequestBody(orders,request);
-	}
-	@RequestMapping(method=RequestMethod.PUT,produces = { "application/json" }, consumes = { "application/json" })
-	public Response<String> modRequestBody(@RequestBody Orders orders,HttpServletRequest request) {
-		ordersQueueService.enqueue(new QueueExec<Orders>(orders) {
-			@Override
-			public void exec() {
-				orders.setUpdatetime(new Date());
-				ordersService.update(orders);
-			}
-		});
-		return new Response<String>(Response.Code.SUCCESS.getValue());
-	}
+	
 	
 	
 	@Scheduled(cron = "${security.controller.order.inser.cron:0 0/1 * * * ?}")
@@ -116,7 +101,7 @@ public class OrderController extends BaseController {
 		}
 	
 		ordersService.insert(list);
-		LOGGER.info("Insert orders "+list.size());
+		LOGGER.warn("Insert orders "+list.size());
 	}
 	
 	
@@ -142,6 +127,22 @@ public class OrderController extends BaseController {
 		return res;
 		
 		
+	}*/
+	
+	/*@RequestMapping(method=RequestMethod.PUT)
+	public Response<String> modModelAttribute(@ModelAttribute Orders orders,HttpServletRequest request) {
+		return modRequestBody(orders,request);
+	}
+	@RequestMapping(method=RequestMethod.PUT,produces = { "application/json" }, consumes = { "application/json" })
+	public Response<String> modRequestBody(@RequestBody Orders orders,HttpServletRequest request) {
+		ordersQueueService.enqueue(new QueueExec<Orders>(orders) {
+			@Override
+			public void exec() {
+				orders.setUpdatetime(new Date());
+				ordersService.update(orders);
+			}
+		});
+		return new Response<String>(Response.Code.SUCCESS.getValue());
 	}*/
 	
 

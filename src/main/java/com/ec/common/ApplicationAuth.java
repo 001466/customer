@@ -71,7 +71,6 @@ public class ApplicationAuth extends org.springframework.web.servlet.config.anno
 		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));   
 		Browser browser = userAgent.getBrowser();    
 		OperatingSystem os = userAgent.getOperatingSystem();  
-		System.err.println(browser.getBrowserType());
 		if(browser.getBrowserType().toString().toUpperCase().indexOf("BROWSER")>-1)return true;
 		response.getWriter().println(new Response(Response.Code.NOT_BROWSER.getValue(),"NOT BROWSER").toString());
 		LOGGER.warn("NOT BROWSER "+request.getRemoteAddr());
