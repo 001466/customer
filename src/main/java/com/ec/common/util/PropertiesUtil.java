@@ -1,4 +1,4 @@
-package com.ec.common.utils;
+package com.ec.common.util;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -12,13 +12,13 @@ import java.util.Set;
 
 import org.slf4j.Logger;import org.slf4j.LoggerFactory;
 
-public class PropertiesUtils {
+public class PropertiesUtil {
 
-	private  static final Logger  LOGGER = LoggerFactory.getLogger(PropertiesUtils.class);
+	private  static final Logger  LOGGER = LoggerFactory.getLogger(PropertiesUtil.class);
 
 	private Properties prop = new Properties();
 	private File       file;
-	public PropertiesUtils(String resource) {
+	public PropertiesUtil(String resource) {
 		super();
 		this.file = new File(resource);
 		try {
@@ -89,7 +89,7 @@ public class PropertiesUtils {
 	
 
 	public static void main(String[] args) {
-		PropertiesUtils p = new PropertiesUtils("strategy.properties");
+		PropertiesUtil p = new PropertiesUtil("strategy.properties");
 		for (Entry<Object, Object> e : p.values()) {
 			System.out.println(e);
 		}

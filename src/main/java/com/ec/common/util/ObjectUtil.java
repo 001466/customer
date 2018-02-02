@@ -1,4 +1,4 @@
-package com.ec.common.utils;
+package com.ec.common.util;
 
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
@@ -31,9 +31,9 @@ import org.springframework.util.Assert;
  * @date 2016楠烇拷8閺堬拷25閺冿拷
  * @time 娑撳﹤宕�9:42:11
  */
-public abstract class ObjectUtils extends org.springframework.beans.BeanUtils{
+public abstract class ObjectUtil extends org.springframework.beans.BeanUtils{
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(ObjectUtils.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ObjectUtil.class);
 
 
 	public static void copyNotNull2Object(Object source, Object target, String[] ignoreProperties)

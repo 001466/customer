@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import com.ec.common.utils.IDGen;
+import com.ec.common.util.IDGen;
 @SpringBootApplication
 @ComponentScan(basePackages={"com.ec"})
 @MapperScan("com.ec.order.dao")

@@ -17,13 +17,11 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ec.common.controller.BaseController;
 import com.ec.common.model.Response;
-import com.ec.common.service.QueueExec;
-import com.ec.common.utils.IDGen;
+import com.ec.common.util.IDGen;
 import com.ec.order.model.Orders;
 import com.ec.order.queue.OrdersQueueService;
 import com.ec.order.service.OrdersService;
