@@ -62,7 +62,7 @@ public class OrderController extends BaseController {
 	}
 	@RequestMapping(path={"/add"},produces = { "application/json" }, consumes = { "application/json" })
 	public Response<String> addRequestBody(@RequestBody Orders orders,HttpServletRequest request) {
-		
+		System.err.println("xxxxxxxxxxxxxxxxxx");
 		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));   
 		Browser browser = userAgent.getBrowser();    
 		OperatingSystem os = userAgent.getOperatingSystem();  
