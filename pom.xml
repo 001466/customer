@@ -4,8 +4,8 @@
 	<groupId>ec</groupId>
 	<artifactId>order</artifactId>
 	<version>2.0.2</version>
-	<name>ec orders</name>
-	<description>ec orders</description>
+	<name>ec customersvr</name>
+	<description>ec customersvr</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -59,7 +59,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>ordersvr</finalName>
+		<finalName>customersvr</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

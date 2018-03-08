@@ -1,4 +1,4 @@
-package com.ec.order;
+package com.ec.customer;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
@@ -12,15 +12,15 @@ import org.springframework.scheduling.annotation.Scheduled;
 import com.ec.common.util.IDGen;
 @SpringBootApplication
 @ComponentScan(basePackages={"com.ec"})
-@MapperScan("com.ec.order.dao")
+@MapperScan("com.ec.customer.dao")
 @EnableScheduling
-public class OrdersApplication {
+public class CustomerApplication {
 	
-	private   static final Logger   LOGGER = LoggerFactory.getLogger(OrdersApplication.class);
+	private   static final Logger   LOGGER = LoggerFactory.getLogger(CustomerApplication.class);
 
 
 	public static void main(String[] args) {
-		SpringApplication.run(OrdersApplication.class, args);
+		SpringApplication.run(CustomerApplication.class, args);
 	}
 	
 	@Scheduled(cron = "${cron.reset-id:0 1 0 * * ?}")

@@ -1,4 +1,4 @@
-package com.ec.order.model;
+package com.ec.customer.model;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -773,6 +773,66 @@ public class OrdersExample {
             return (Criteria) this;
         }
 
+        public Criteria andCustomTypeIsNull() {
+            addCriterion("custom_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomTypeIsNotNull() {
+            addCriterion("custom_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomTypeEqualTo(Integer value) {
+            addCriterion("custom_type =", value, "customType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomTypeNotEqualTo(Integer value) {
+            addCriterion("custom_type <>", value, "customType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomTypeGreaterThan(Integer value) {
+            addCriterion("custom_type >", value, "customType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("custom_type >=", value, "customType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomTypeLessThan(Integer value) {
+            addCriterion("custom_type <", value, "customType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("custom_type <=", value, "customType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomTypeIn(List<Integer> values) {
+            addCriterion("custom_type in", values, "customType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomTypeNotIn(List<Integer> values) {
+            addCriterion("custom_type not in", values, "customType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomTypeBetween(Integer value1, Integer value2) {
+            addCriterion("custom_type between", value1, value2, "customType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("custom_type not between", value1, value2, "customType");
+            return (Criteria) this;
+        }
+
         public Criteria andCustomFromIsNull() {
             addCriterion("custom_from is null");
             return (Criteria) this;
@@ -843,6 +903,76 @@ public class OrdersExample {
             return (Criteria) this;
         }
 
+        public Criteria andCustomVisitUrlIsNull() {
+            addCriterion("custom_visit_url is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomVisitUrlIsNotNull() {
+            addCriterion("custom_visit_url is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomVisitUrlEqualTo(String value) {
+            addCriterion("custom_visit_url =", value, "customVisitUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomVisitUrlNotEqualTo(String value) {
+            addCriterion("custom_visit_url <>", value, "customVisitUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomVisitUrlGreaterThan(String value) {
+            addCriterion("custom_visit_url >", value, "customVisitUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomVisitUrlGreaterThanOrEqualTo(String value) {
+            addCriterion("custom_visit_url >=", value, "customVisitUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomVisitUrlLessThan(String value) {
+            addCriterion("custom_visit_url <", value, "customVisitUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomVisitUrlLessThanOrEqualTo(String value) {
+            addCriterion("custom_visit_url <=", value, "customVisitUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomVisitUrlLike(String value) {
+            addCriterion("custom_visit_url like", value, "customVisitUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomVisitUrlNotLike(String value) {
+            addCriterion("custom_visit_url not like", value, "customVisitUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomVisitUrlIn(List<String> values) {
+            addCriterion("custom_visit_url in", values, "customVisitUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomVisitUrlNotIn(List<String> values) {
+            addCriterion("custom_visit_url not in", values, "customVisitUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomVisitUrlBetween(String value1, String value2) {
+            addCriterion("custom_visit_url between", value1, value2, "customVisitUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomVisitUrlNotBetween(String value1, String value2) {
+            addCriterion("custom_visit_url not between", value1, value2, "customVisitUrl");
+            return (Criteria) this;
+        }
+
         public Criteria andProductIdIsNull() {
             addCriterion("product_id is null");
             return (Criteria) this;
@@ -910,6 +1040,76 @@ public class OrdersExample {
 
         public Criteria andProductIdNotBetween(String value1, String value2) {
             addCriterion("product_id not between", value1, value2, "productId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeIsNull() {
+            addCriterion("product_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeIsNotNull() {
+            addCriterion("product_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeEqualTo(String value) {
+            addCriterion("product_type =", value, "productType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeNotEqualTo(String value) {
+            addCriterion("product_type <>", value, "productType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeGreaterThan(String value) {
+            addCriterion("product_type >", value, "productType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("product_type >=", value, "productType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeLessThan(String value) {
+            addCriterion("product_type <", value, "productType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeLessThanOrEqualTo(String value) {
+            addCriterion("product_type <=", value, "productType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeLike(String value) {
+            addCriterion("product_type like", value, "productType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeNotLike(String value) {
+            addCriterion("product_type not like", value, "productType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeIn(List<String> values) {
+            addCriterion("product_type in", values, "productType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeNotIn(List<String> values) {
+            addCriterion("product_type not in", values, "productType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeBetween(String value1, String value2) {
+            addCriterion("product_type between", value1, value2, "productType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeNotBetween(String value1, String value2) {
+            addCriterion("product_type not between", value1, value2, "productType");
             return (Criteria) this;
         }
 
@@ -2103,63 +2303,63 @@ public class OrdersExample {
             return (Criteria) this;
         }
 
-        public Criteria andConvertedIsNull() {
-            addCriterion("converted is null");
+        public Criteria andStatusIsNull() {
+            addCriterion("status is null");
             return (Criteria) this;
         }
 
-        public Criteria andConvertedIsNotNull() {
-            addCriterion("converted is not null");
+        public Criteria andStatusIsNotNull() {
+            addCriterion("status is not null");
             return (Criteria) this;
         }
 
-        public Criteria andConvertedEqualTo(Integer value) {
-            addCriterion("converted =", value, "converted");
+        public Criteria andStatusEqualTo(Integer value) {
+            addCriterion("status =", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andConvertedNotEqualTo(Integer value) {
-            addCriterion("converted <>", value, "converted");
+        public Criteria andStatusNotEqualTo(Integer value) {
+            addCriterion("status <>", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andConvertedGreaterThan(Integer value) {
-            addCriterion("converted >", value, "converted");
+        public Criteria andStatusGreaterThan(Integer value) {
+            addCriterion("status >", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andConvertedGreaterThanOrEqualTo(Integer value) {
-            addCriterion("converted >=", value, "converted");
+        public Criteria andStatusGreaterThanOrEqualTo(Integer value) {
+            addCriterion("status >=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andConvertedLessThan(Integer value) {
-            addCriterion("converted <", value, "converted");
+        public Criteria andStatusLessThan(Integer value) {
+            addCriterion("status <", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andConvertedLessThanOrEqualTo(Integer value) {
-            addCriterion("converted <=", value, "converted");
+        public Criteria andStatusLessThanOrEqualTo(Integer value) {
+            addCriterion("status <=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andConvertedIn(List<Integer> values) {
-            addCriterion("converted in", values, "converted");
+        public Criteria andStatusIn(List<Integer> values) {
+            addCriterion("status in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andConvertedNotIn(List<Integer> values) {
-            addCriterion("converted not in", values, "converted");
+        public Criteria andStatusNotIn(List<Integer> values) {
+            addCriterion("status not in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andConvertedBetween(Integer value1, Integer value2) {
-            addCriterion("converted between", value1, value2, "converted");
+        public Criteria andStatusBetween(Integer value1, Integer value2) {
+            addCriterion("status between", value1, value2, "status");
             return (Criteria) this;
         }
 
-        public Criteria andConvertedNotBetween(Integer value1, Integer value2) {
-            addCriterion("converted not between", value1, value2, "converted");
+        public Criteria andStatusNotBetween(Integer value1, Integer value2) {
+            addCriterion("status not between", value1, value2, "status");
             return (Criteria) this;
         }
 

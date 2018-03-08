@@ -1,12 +1,12 @@
-package com.ec.order.dao;
+package com.ec.customer.dao;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.ec.order.model.Orders;
-import com.ec.order.model.OrdersExample;
+import com.ec.customer.model.Orders;
+import com.ec.customer.model.OrdersExample;
 
 public interface OrdersMapper {
     /**

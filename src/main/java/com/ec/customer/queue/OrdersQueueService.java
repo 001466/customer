@@ -1,4 +1,4 @@
-package com.ec.order.queue;
+package com.ec.customer.queue;
 
 import org.springframework.stereotype.Component;
 

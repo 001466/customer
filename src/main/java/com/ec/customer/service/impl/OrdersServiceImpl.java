@@ -1,4 +1,4 @@
-package com.ec.order.service.impl;
+package com.ec.customer.service.impl;
 
 import java.util.Collection;
 import java.util.List;
@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ec.order.dao.OrdersMapper;
-import com.ec.order.model.Orders;
-import com.ec.order.model.OrdersExample;
-import com.ec.order.service.OrdersService;
+import com.ec.customer.dao.OrdersMapper;
+import com.ec.customer.model.Orders;
+import com.ec.customer.model.OrdersExample;
+import com.ec.customer.service.OrdersService;
 
 @Service
 public class OrdersServiceImpl implements OrdersService {

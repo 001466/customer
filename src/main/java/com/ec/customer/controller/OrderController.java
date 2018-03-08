@@ -1,4 +1,4 @@
-package com.ec.order.controller;
+package com.ec.customer.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,9 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ec.common.controller.BaseController;
 import com.ec.common.model.Response;
 import com.ec.common.util.IDGen;
-import com.ec.order.model.Orders;
-import com.ec.order.queue.OrdersQueueService;
-import com.ec.order.service.OrdersService;
+import com.ec.customer.model.Orders;
+import com.ec.customer.queue.OrdersQueueService;
+import com.ec.customer.service.OrdersService;
 
 import eu.bitwalker.useragentutils.Browser;
 import eu.bitwalker.useragentutils.OperatingSystem;
@@ -38,6 +38,7 @@ import eu.bitwalker.useragentutils.UserAgent;
  */
 @RestController
 @EnableScheduling
+@RequestMapping(path={"/order"})
 public class OrderController extends BaseController {
 
 	private   static final Logger   LOGGER = LoggerFactory.getLogger(OrderController.class);
@@ -62,7 +63,6 @@ public class OrderController extends BaseController {
 	}
 	@RequestMapping(path={"/add"},produces = { "application/json" }, consumes = { "application/json" })
 	public Response<String> addRequestBody(@RequestBody Orders orders,HttpServletRequest request) {
-		System.err.println("xxxxxxxxxxxxxxxxxx");
 		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));   
 		Browser browser = userAgent.getBrowser();    
 		OperatingSystem os = userAgent.getOperatingSystem();  
@@ -91,7 +91,7 @@ public class OrderController extends BaseController {
 		int converted=list.size()>limits?-1:0;
 		
 		for(Orders orders:list){
-			orders.setConverted(converted);
+			orders.setStatus(converted);
 			
 			orders.setId(IDGen.next());
 			orders.setCreatedate(new Date());
