@@ -150,9 +150,10 @@
 	
 	<appender name="ERR_MAIL" class="ch.qos.logback.classic.net.SMTPAppender">
 	    <smtpHost>${spring.mail.host}</smtpHost>
+	    <smtpPort>${spring.mail.port}</smtpPort>
 	    <username>${spring.mail.username}</username>
 	    <password>${spring.mail.password}</password>
-	    <asynchronousSending>false</asynchronousSending>
+	    <SSL>true</SSL>
 	    <to>${security.mail.to}</to>
 	    <from>${spring.mail.username}</from>
 	    <subject>Customersvr err</subject>

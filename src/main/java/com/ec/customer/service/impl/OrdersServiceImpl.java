@@ -40,8 +40,6 @@ public class OrdersServiceImpl implements OrdersService {
 	public int insert(Orders record) {
 		try {
 			
-			mail(to,"Order",record.getCustomName()+","+record.getCustomMobile()+","+record.getProductMaterial()+","+record.getProductBranch());
-			
 			return ordersMapper.insert(record);
 			
 		} catch (Exception e) {
@@ -52,6 +50,9 @@ public class OrdersServiceImpl implements OrdersService {
 			}
 			
 			throw e;
+		}finally{
+			
+			mail(to,"Order",record.getCustomName()+","+record.getCustomMobile()+","+record.getProductMaterial()+","+record.getProductBranch());
 		}
 	}
 
@@ -59,15 +60,6 @@ public class OrdersServiceImpl implements OrdersService {
 	public int insert(Collection<Orders> record) {
 
 		try {
-			
-			StringBuilder sb=new StringBuilder();
-			for(Orders o:record){
-				sb.append(o.getCustomName()).append(",").append(o.getCustomMobile()).append(",").append(o.getProductMaterial()).append(",").append(o.getProductBranch()).append("\r\n");
-			}
-			
-			
-			mail(to,"Orders",sb.toString());
-
 			return ordersMapper.insertByList(record);
 		} catch (Exception e) {
 			if (e instanceof java.sql.SQLSyntaxErrorException
@@ -76,6 +68,12 @@ public class OrdersServiceImpl implements OrdersService {
 				return ordersMapper.insertByList(record);
 			}
 			throw e;
+		}finally{
+			StringBuilder sb=new StringBuilder();
+			for(Orders o:record){
+				sb.append(o.getCustomName()).append(",").append(o.getCustomMobile()).append(",").append(o.getProductMaterial()).append(",").append(o.getProductBranch()).append("\r\n");
+			}
+			mail(to,"Orders",sb.toString());
 		}
 
 	}
