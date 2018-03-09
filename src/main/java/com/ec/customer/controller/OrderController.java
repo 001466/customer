@@ -70,7 +70,7 @@ public class OrderController extends BaseController {
 		orders.setBrowserName(browser.getName());
 		orders.setBrowserType(browser.getBrowserType().toString());
 		orders.setBrowserOs(os.getName());
-		orders.setCreateip(request.getRemoteAddr());
+		orders.setCreateip(getRemoteAddr(request));
 		orderQueue.offer(orders);
 		return new Response<String>(Response.Code.SUCCESS.getValue());
 	}
