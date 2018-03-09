@@ -1,4 +1,4 @@
-package com.ec.order;
+package com.ec.customer;
 
 import com.ec.common.model.Response;
 

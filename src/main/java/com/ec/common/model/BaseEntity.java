@@ -27,13 +27,12 @@ public class BaseEntity {
 	public String toString() {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.setSerializationInclusion(Include.NON_NULL);
-		String json = null;
 		try {
-			json = mapper.writeValueAsString(this);
+			return mapper.writeValueAsString(this);
 		} catch (JsonProcessingException e) {
-			LOGGER.warn(e.getMessage(),e);
+			LOGGER.error(e.getMessage(),e);
 		}
-		return json;
+		return null;
 	}
 
 }

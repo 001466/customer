@@ -58,7 +58,6 @@ public class VisitorController  extends BaseController {
 	@RequestMapping(path={"/add"},produces = { "application/json" }, consumes = { "application/json" })
 	public Response<String> addRequestBody(@RequestBody Visitors visitors,HttpServletRequest request) {
 		
-		
 		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));   
 		Browser browser = userAgent.getBrowser();    
 		OperatingSystem os = userAgent.getOperatingSystem();  
@@ -93,7 +92,6 @@ public class VisitorController  extends BaseController {
 		}
 	
 		visitorsService.insert(list);
-		LOGGER.warn("Insert visitors "+list.size());
 	}
 	
 	

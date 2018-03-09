@@ -104,7 +104,6 @@ public class OrderController extends BaseController {
 		}
 	
 		ordersService.insert(list);
-		LOGGER.warn("Insert orders "+list.size());
 	}
 	
 	
