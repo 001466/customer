@@ -42,10 +42,11 @@ public class VisitorController  extends BaseController {
 	@Autowired
 	VisitorsService visitorsService ;
 	
-	@Value("${security.controller.order.inser.limits:60}")
-	private int limits;
+	@Value("${security.controller.visiter.inser.rate.limit:10}")
+	int rateLimit;
 	
-	
+	@Value("${security.controller.visiter.inser.rate.unit:0/1 * * * * ?}")
+	String rateUnit;
 	
 	protected static BlockingQueue<Visitors> orderQueue = new LinkedBlockingQueue<Visitors>();
 
@@ -56,6 +57,10 @@ public class VisitorController  extends BaseController {
 	}
 	@RequestMapping(path={"/add"},produces = { "application/json" }, consumes = { "application/json" })
 	public Response<String> addRequestBody(@RequestBody Visitors visitors,HttpServletRequest request) {
+		
+		System.err.println(rateUnit);
+		System.err.println(rateUnit);
+		
 		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));   
 		Browser browser = userAgent.getBrowser();    
 		OperatingSystem os = userAgent.getOperatingSystem();  
@@ -73,18 +78,19 @@ public class VisitorController  extends BaseController {
 	
 	
 	
-	@Scheduled(cron = "${security.controller.order.inser.cron:0 0/1 * * * ?}")
+	@Scheduled(cron = "${security.controller.visiter.inser.rate.unit:0/1 * * * * ?}")
 	private void scheduler() {
 		
 		if(orderQueue.size()==0)return ;
 		
 		List<Visitors> list=new ArrayList<>();
 		orderQueue.drainTo(list);
-		int converted=list.size()>limits?-1:0;
+		int converted=list.size()>rateLimit?-1:0;
 		
 		for(Visitors visitors:list){
 			visitors.setStatus(converted);
-			
+			visitors.setRateUnit(rateUnit);
+			visitors.setRateVal(list.size());
 			visitors.setCreatedate(new Date());
 		}
 	

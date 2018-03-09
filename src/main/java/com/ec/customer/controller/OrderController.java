@@ -49,9 +49,11 @@ public class OrderController extends BaseController {
 	@Autowired
 	OrdersService ordersService ;
 	
-	@Value("${security.controller.order.inser.limits:60}")
-	private int limits;
+	@Value("${security.controller.order.inser.rate.limit:10}")
+	int rateLimit;
 	
+	@Value("${security.controller.order.inser.rate.unit:0/1 * * * * ?}")
+	String rateUnit;
 	
 	
 	protected static BlockingQueue<Orders> orderQueue = new LinkedBlockingQueue<Orders>();
@@ -81,18 +83,21 @@ public class OrderController extends BaseController {
 	
 	
 	
-	@Scheduled(cron = "${security.controller.order.inser.cron:0 0/1 * * * ?}")
+	@Scheduled(cron = "${security.controller.order.inser.rate.unit:0/1 * * * * ?}")
 	private void scheduler() {
 		
 		if(orderQueue.size()==0)return ;
 		
 		List<Orders> list=new ArrayList<>();
 		orderQueue.drainTo(list);
-		int converted=list.size()>limits?-1:0;
+		int converted=list.size()>rateLimit?-1:0;
 		
 		for(Orders orders:list){
+			
 			orders.setStatus(converted);
 			
+			orders.setRateUnit(rateUnit);
+			orders.setRateVal(list.size());
 			orders.setId(IDGen.next());
 			orders.setCreatedate(new Date());
 			orders.setCreatetime(new Date());

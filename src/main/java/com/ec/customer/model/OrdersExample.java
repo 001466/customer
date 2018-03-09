@@ -2572,6 +2572,136 @@ public class OrdersExample {
             addCriterion("browser_os not between", value1, value2, "browserOs");
             return (Criteria) this;
         }
+
+        public Criteria andRateUnitIsNull() {
+            addCriterion("rate_unit is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateUnitIsNotNull() {
+            addCriterion("rate_unit is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateUnitEqualTo(String value) {
+            addCriterion("rate_unit =", value, "rateUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateUnitNotEqualTo(String value) {
+            addCriterion("rate_unit <>", value, "rateUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateUnitGreaterThan(String value) {
+            addCriterion("rate_unit >", value, "rateUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateUnitGreaterThanOrEqualTo(String value) {
+            addCriterion("rate_unit >=", value, "rateUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateUnitLessThan(String value) {
+            addCriterion("rate_unit <", value, "rateUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateUnitLessThanOrEqualTo(String value) {
+            addCriterion("rate_unit <=", value, "rateUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateUnitLike(String value) {
+            addCriterion("rate_unit like", value, "rateUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateUnitNotLike(String value) {
+            addCriterion("rate_unit not like", value, "rateUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateUnitIn(List<String> values) {
+            addCriterion("rate_unit in", values, "rateUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateUnitNotIn(List<String> values) {
+            addCriterion("rate_unit not in", values, "rateUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateUnitBetween(String value1, String value2) {
+            addCriterion("rate_unit between", value1, value2, "rateUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateUnitNotBetween(String value1, String value2) {
+            addCriterion("rate_unit not between", value1, value2, "rateUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateValIsNull() {
+            addCriterion("rate_val is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateValIsNotNull() {
+            addCriterion("rate_val is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateValEqualTo(Integer value) {
+            addCriterion("rate_val =", value, "rateVal");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateValNotEqualTo(Integer value) {
+            addCriterion("rate_val <>", value, "rateVal");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateValGreaterThan(Integer value) {
+            addCriterion("rate_val >", value, "rateVal");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateValGreaterThanOrEqualTo(Integer value) {
+            addCriterion("rate_val >=", value, "rateVal");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateValLessThan(Integer value) {
+            addCriterion("rate_val <", value, "rateVal");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateValLessThanOrEqualTo(Integer value) {
+            addCriterion("rate_val <=", value, "rateVal");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateValIn(List<Integer> values) {
+            addCriterion("rate_val in", values, "rateVal");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateValNotIn(List<Integer> values) {
+            addCriterion("rate_val not in", values, "rateVal");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateValBetween(Integer value1, Integer value2) {
+            addCriterion("rate_val between", value1, value2, "rateVal");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateValNotBetween(Integer value1, Integer value2) {
+            addCriterion("rate_val not between", value1, value2, "rateVal");
+            return (Criteria) this;
+        }
     }
 
     /**

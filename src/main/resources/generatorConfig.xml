@@ -43,6 +43,13 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
+		<table tableName="orders">
+			<!-- 
+			<generatedKey column="id" sqlStatement="Mysql" type="post"
+				identity="true" />
+			-->
+		</table>
+		
 		<table tableName="visitors">
 			<!-- 
 			<generatedKey column="id" sqlStatement="Mysql" type="post"
