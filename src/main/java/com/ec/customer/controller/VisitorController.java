@@ -58,8 +58,6 @@ public class VisitorController  extends BaseController {
 	@RequestMapping(path={"/add"},produces = { "application/json" }, consumes = { "application/json" })
 	public Response<String> addRequestBody(@RequestBody Visitors visitors,HttpServletRequest request) {
 		
-		System.err.println(rateUnit);
-		System.err.println(rateUnit);
 		
 		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));   
 		Browser browser = userAgent.getBrowser();    
