@@ -5,25 +5,24 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ec.customer.dao.OrdersMapper;
-import com.ec.customer.model.Orders;
-import com.ec.customer.service.OrdersService;
-
+import com.ec.customer.dao.VisitorsMapper;
+import com.ec.customer.model.Visitors;
+import com.ec.customer.service.VisitorsService;
 @Service
-public class OrdersServiceImpl implements OrdersService {
+public class VisitorsServiceImpl implements VisitorsService {
 
 	@Autowired
-	private OrdersMapper ordersMapper;
+	private VisitorsMapper visitorsMapper;
 
 	@Override
-	public int insert(Orders record) {
+	public int insert(Visitors record) {
 		try {
-			return ordersMapper.insert(record);
+			return visitorsMapper.insert(record);
 		} catch (Exception e) {
 			if (e instanceof java.sql.SQLSyntaxErrorException
 					|| e.getCause() instanceof java.sql.SQLSyntaxErrorException) {
-				ordersMapper.createTable();
-				return ordersMapper.insert(record);
+				visitorsMapper.createTable();
+				return visitorsMapper.insert(record);
 			}
 			throw e;
 		}
@@ -32,15 +31,15 @@ public class OrdersServiceImpl implements OrdersService {
 
 
 	@Override
-	public int insert(Collection<Orders> record) {
+	public int insert(Collection<Visitors> record) {
 
 		try {
-			return ordersMapper.insertByList(record);
+			return visitorsMapper.insertByList(record);
 		} catch (Exception e) {
 			if (e instanceof java.sql.SQLSyntaxErrorException
 					|| e.getCause() instanceof java.sql.SQLSyntaxErrorException) {
-				ordersMapper.createTable();
-				return ordersMapper.insertByList(record);
+				visitorsMapper.createTable();
+				return visitorsMapper.insertByList(record);
 			}
 			throw e;
 		}

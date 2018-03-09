@@ -21,57 +21,49 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ec.common.controller.BaseController;
 import com.ec.common.model.Response;
-import com.ec.common.util.IDGen;
-import com.ec.customer.model.Orders;
-import com.ec.customer.queue.OrdersQueueService;
-import com.ec.customer.service.OrdersService;
+import com.ec.customer.model.Visitors;
+import com.ec.customer.queue.VisitersQueueService;
+import com.ec.customer.service.VisitorsService;
 
 import eu.bitwalker.useragentutils.Browser;
 import eu.bitwalker.useragentutils.OperatingSystem;
 import eu.bitwalker.useragentutils.UserAgent;
-
-
-/**
- *
- * @author winall
- *
- */
 @RestController
 @EnableScheduling
-@RequestMapping(path={"/order"})
-public class OrderController extends BaseController {
+@RequestMapping(path={"/visitor"})
+public class VisitorController  extends BaseController {
 
-	private   static final Logger   LOGGER = LoggerFactory.getLogger(OrderController.class);
+
+	private   static final Logger   LOGGER = LoggerFactory.getLogger(VisitorController.class);
 
 	@Autowired
-	OrdersQueueService ordersQueueService;
+	VisitersQueueService visitersQueueService;
 	
 	@Autowired
-	OrdersService ordersService ;
+	VisitorsService visitorsService ;
 	
 	@Value("${security.controller.order.inser.limits:60}")
 	private int limits;
 	
 	
 	
-	protected static BlockingQueue<Orders> orderQueue = new LinkedBlockingQueue<Orders>();
+	protected static BlockingQueue<Visitors> orderQueue = new LinkedBlockingQueue<Visitors>();
 
 
 	@RequestMapping(path={"/add"})
-	public Response<String> addModelAttribute(@ModelAttribute Orders orders,HttpServletRequest request) {
-		return addRequestBody(orders,request);
+	public Response<String> addModelAttribute(@ModelAttribute Visitors visitors,HttpServletRequest request) {
+		return addRequestBody(visitors,request);
 	}
 	@RequestMapping(path={"/add"},produces = { "application/json" }, consumes = { "application/json" })
-	public Response<String> addRequestBody(@RequestBody Orders orders,HttpServletRequest request) {
+	public Response<String> addRequestBody(@RequestBody Visitors visitors,HttpServletRequest request) {
 		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));   
 		Browser browser = userAgent.getBrowser();    
 		OperatingSystem os = userAgent.getOperatingSystem();  
 		
-		orders.setBrowserName(browser.getName());
-		orders.setBrowserType(browser.getBrowserType().toString());
-		orders.setBrowserOs(os.getName());
-		orders.setCreateip(getRemoteAddr(request));
-		orderQueue.offer(orders);
+		visitors.setBrowserName(browser.getName());
+		visitors.setBrowserOs(os.getName());
+		visitors.setCreateip(getRemoteAddr(request));
+		orderQueue.offer(visitors);
 		return new Response<String>(Response.Code.SUCCESS.getValue());
 	}
 	
@@ -86,24 +78,23 @@ public class OrderController extends BaseController {
 		
 		if(orderQueue.size()==0)return ;
 		
-		List<Orders> list=new ArrayList<>();
+		List<Visitors> list=new ArrayList<>();
 		orderQueue.drainTo(list);
 		int converted=list.size()>limits?-1:0;
 		
-		for(Orders orders:list){
-			orders.setStatus(converted);
+		for(Visitors visitors:list){
+			visitors.setStatus(converted);
 			
-			orders.setId(IDGen.next());
-			orders.setCreatedate(new Date());
-			orders.setCreatetime(new Date());
+			visitors.setCreatedate(new Date());
 		}
 	
-		ordersService.insert(list);
-		LOGGER.warn("Insert orders "+list.size());
+		visitorsService.insert(list);
+		LOGGER.warn("Insert visitors "+list.size());
 	}
 	
 	
 	
+
 
 
 }
