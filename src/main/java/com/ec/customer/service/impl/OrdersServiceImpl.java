@@ -1,11 +1,14 @@
 package com.ec.customer.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Service;
 
 import com.ec.customer.dao.OrdersMapper;
@@ -13,6 +16,7 @@ import com.ec.customer.model.Orders;
 import com.ec.customer.service.OrdersService;
 
 @Service
+@EnableScheduling
 public class OrdersServiceImpl implements OrdersService {
 
 	@Autowired
@@ -27,11 +31,13 @@ public class OrdersServiceImpl implements OrdersService {
 	@Value("${security.mail.to}")
 	private String to;
 	
-	public void mail(String to, String title, String content) {
+	java.text.SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
+	public void mail(String content) {
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setFrom(from); // 发送者
 		message.setTo(to); // 接受者
-		message.setSubject(title); // 发送标题
+		message.setSubject(df.format(new Date())+" Order Notify"); // 发送标题
 		message.setText(content); // 发送内容
 		javaMailSender.send(message);
 	}
@@ -52,12 +58,13 @@ public class OrdersServiceImpl implements OrdersService {
 			throw e;
 		}finally{
 			
-			mail(to,"Order",record.getCustomName()+","+record.getCustomMobile()+","+record.getProductMaterial()+","+record.getProductBranch());
+			mail(record.getCustomName()+" \t "+record.getCustomMobile()+" \t "+record.getProductMaterial()+" \t "+record.getProductBranch());
 		}
 	}
 
 	@Override
 	public int insert(Collection<Orders> record) {
+		
 
 		try {
 			return ordersMapper.insertByList(record);
@@ -71,9 +78,9 @@ public class OrdersServiceImpl implements OrdersService {
 		}finally{
 			StringBuilder sb=new StringBuilder();
 			for(Orders o:record){
-				sb.append(o.getCustomName()).append(",").append(o.getCustomMobile()).append(",").append(o.getProductMaterial()).append(",").append(o.getProductBranch()).append("\r\n");
+				sb.append(o.getCustomName()).append(" \t ").append(o.getCustomMobile()).append(" \t ").append(o.getProductMaterial()).append(" \t ").append(o.getProductBranch()).append("\r\n");
 			}
-			mail(to,"Orders",sb.toString());
+			mail(sb.toString());
 		}
 
 	}
