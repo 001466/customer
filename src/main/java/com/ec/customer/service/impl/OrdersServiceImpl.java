@@ -33,13 +33,21 @@ public class OrdersServiceImpl implements OrdersService {
 	
 	java.text.SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
-	public void mail(String content) {
+	private void mail(String content) {
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setFrom(from); // 发送者
 		message.setTo(to); // 接受者
 		message.setSubject(df.format(new Date())+" Order Notify"); // 发送标题
 		message.setText(content); // 发送内容
 		javaMailSender.send(message);
+	}
+	
+	
+	
+	private String parseMailContent(Orders o){
+		StringBuilder sb=new StringBuilder();
+		sb.append(o.getId()).append(" \t ").append(o.getType()).append(" \t "). append(o.getCustomName()).append(" \t ").append(o.getCustomMobile()).append(" \t ").append(o.getProductMaterial()).append(" \t ").append(o.getProductBranch()).append(" \t ").append(o.getCustomVisitUrl()).append("\r\n");
+		return sb.toString();
 	}
 
 	@Override
@@ -58,7 +66,7 @@ public class OrdersServiceImpl implements OrdersService {
 			throw e;
 		}finally{
 			
-			mail(record.getCustomName()+" \t "+record.getCustomMobile()+" \t "+record.getProductMaterial()+" \t "+record.getProductBranch());
+			mail(parseMailContent(record));
 		}
 	}
 
@@ -78,7 +86,7 @@ public class OrdersServiceImpl implements OrdersService {
 		}finally{
 			StringBuilder sb=new StringBuilder();
 			for(Orders o:record){
-				sb.append(o.getCustomName()).append(" \t ").append(o.getCustomMobile()).append(" \t ").append(o.getProductMaterial()).append(" \t ").append(o.getProductBranch()).append("\r\n");
+				sb.append(parseMailContent(o)).append("\r\n");
 			}
 			mail(sb.toString());
 		}
