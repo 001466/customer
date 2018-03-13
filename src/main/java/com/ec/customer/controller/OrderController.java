@@ -65,6 +65,22 @@ public class OrderController extends BaseController {
 	}
 	@RequestMapping(path={"/add"},produces = { "application/json" }, consumes = { "application/json" })
 	public Response<String> addRequestBody(@RequestBody Orders orders,HttpServletRequest request) {
+		
+		if(
+				orders.getCustomMobile()==null 
+				|| orders.getCustomMobile().equals("")
+				
+				||orders.getDeliverAdderss()==null 
+				||orders.getDeliverAdderss().equals("")
+				
+				||orders.getProductBranch()==null
+				||orders.getProductBranch().equals("")
+				
+				||orders.getProductMaterial()==null
+				||orders.getProductMaterial().equals("")
+				
+		)return null;
+		
 		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));   
 		Browser browser = userAgent.getBrowser();    
 		OperatingSystem os = userAgent.getOperatingSystem();  
