@@ -5,7 +5,7 @@ public class Response<T> extends BaseEntity{
 	private static final long serialVersionUID = 1L;
 
 	public static enum Code {
-		SUCCESS(0), FAIL(1),PER_IP_LIMIT(101),NOT_LOGIN(102),NOT_BROWSER(103) ;
+		SUCCESS(0), FAIL(1),PER_IP_LIMIT(101),NOT_LOGIN(102),NOT_BROWSER(103),PARAMETER_MISS(104) ;
 		private int value;
 
 		Code(int value) {

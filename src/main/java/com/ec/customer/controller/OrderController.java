@@ -70,16 +70,14 @@ public class OrderController extends BaseController {
 				orders.getCustomMobile()==null 
 				|| orders.getCustomMobile().equals("")
 				
+				
+				
 				||orders.getDeliverAdderss()==null 
 				||orders.getDeliverAdderss().equals("")
 				
-				||orders.getProductBranch()==null
-				||orders.getProductBranch().equals("")
-				
-				||orders.getProductMaterial()==null
-				||orders.getProductMaterial().equals("")
-				
-		)return null;
+		){
+			return new Response<String>(Response.Code.PARAMETER_MISS.getValue());
+		}
 		
 		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));   
 		Browser browser = userAgent.getBrowser();    
