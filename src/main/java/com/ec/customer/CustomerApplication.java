@@ -25,7 +25,9 @@ public class CustomerApplication {
 	
 	@Scheduled(cron = "${cron.reset-id:0 1 0 * * ?}")
 	private void scheduler() {
+		
 		LOGGER.info("RESET ID:"+IDGen.reset());
+		
 	}
 	
 }

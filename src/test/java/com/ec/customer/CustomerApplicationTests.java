@@ -35,7 +35,7 @@ public class CustomerApplicationTests {
 	
 	@Test
 	public void contextLoads() {
-		mail(to,"Test","Test");
+		//mail(to,"Test","Test");
 		
 		System.err.println("xxxxx");
 	}

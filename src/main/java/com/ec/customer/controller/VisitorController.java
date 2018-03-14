@@ -58,14 +58,15 @@ public class VisitorController  extends BaseController {
 	@RequestMapping(path={"/add"},produces = { "application/json" }, consumes = { "application/json" })
 	public Response<String> addRequestBody(@RequestBody Visitors visitors,HttpServletRequest request) {
 		
-		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));   
+		/*UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));   
 		Browser browser = userAgent.getBrowser();    
 		OperatingSystem os = userAgent.getOperatingSystem();  
 		
 		visitors.setBrowserName(browser.getName());
 		visitors.setBrowserOs(os.getName());
 		visitors.setCreateip(getRemoteAddr(request));
-		orderQueue.offer(visitors);
+		orderQueue.offer(visitors);*/
+		
 		return new Response<String>(Response.Code.SUCCESS.getValue());
 	}
 	
