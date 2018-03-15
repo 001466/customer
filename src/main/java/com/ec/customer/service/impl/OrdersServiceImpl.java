@@ -47,22 +47,27 @@ public class OrdersServiceImpl implements OrdersService {
 	private String parseMailContent(Orders o){
 		StringBuilder sb=new StringBuilder();
 		sb
-		.append(o.getId()).append(" \t ")
-		.append(o.getType()).append(" \t\t ")
+		.append("订单编号:").append(o.getId()).append("\r\n")
+		.append("订单类型:").append(o.getType()).append("\r\n")
 		
-		.append(o.getCustomName()).append(" \t ")
-		.append(o.getCustomMobile()).append(" \t\t ")
+		.append("产品生肖:").append(o.getProductBranch()).append("\r\n")
+		.append("产品材质:").append(o.getProductMaterial()).append("\r\n")
 		
-		.append(o.getProductMaterial()).append(" \t ")
-		.append(o.getProductBranch()).append(" \t\t ")
+		.append("客户名称:").append(o.getCustomName()).append("\r\n")
+		.append("客户手机:").append(o.getCustomMobile()).append("\r\n")
 		
-		.append(o.getDeliverProvince()).append(" \t ")
-		.append(o.getDeliverCity()).append(" \t ")
-		.append(o.getDeliverCounty()).append(" \t ")
-		.append(o.getDeliverAdderss()).append(" \t ")
-		.append(o.getDeliverTime()).append(" \t\t ")
+		.append("邮寄省份:").append(o.getDeliverProvince()).append("\r\n")
+		.append("邮寄城市:").append(o.getDeliverCity()).append("\r\n")
+		.append("邮寄地区:").append(o.getDeliverCounty()).append("\r\n")
+		.append("详细地址:").append(o.getDeliverAdderss()).append("\r\n")
+		.append("方便时间:").append(o.getDeliverTime()).append("\r\n")
 		
-		.append(o.getCustomVisitUrl()).append("\r\n");
+		.append("下单网址:").append(o.getCustomVisitUrl()).append("\r\n")
+		.append("订单来源:").append(o.getCustomFrom()).append("\r\n")
+		
+		
+		
+		.append("\r\n\r\n\r\n");
 		return sb.toString();
 	}
 
