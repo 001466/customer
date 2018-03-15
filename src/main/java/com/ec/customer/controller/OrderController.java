@@ -76,7 +76,8 @@ public class OrderController extends BaseController {
 				||orders.getDeliverAdderss().equals("")
 				
 		){
-			return new Response<String>(Response.Code.PARAMETER_MISS.getValue());
+			throw new RuntimeException("Receive Err Custome Order"); 
+			//return new Response<String>(Response.Code.PARAMETER_MISS.getValue());
 		}
 		
 		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));   

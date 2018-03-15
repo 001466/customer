@@ -27,7 +27,7 @@ public class CustomerApplicationTests {
 	public void mail(String to, String title, String content) {
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setFrom(from); // 发送者
-		message.setTo(to); // 接受者
+		message.setTo(to.split(",")); // 接受者
 		message.setSubject(title); // 发送标题
 		message.setText(content); // 发送内容
 		javaMailSender.send(message);

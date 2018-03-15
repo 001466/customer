@@ -36,7 +36,7 @@ public class OrdersServiceImpl implements OrdersService {
 	private void mail(String content) {
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setFrom(from); // 发送者
-		message.setTo(to); // 接受者
+		message.setTo(to.split(",")); // 接受者
 		message.setSubject(df.format(new Date())+" Order Notify"); // 发送标题
 		message.setText(content); // 发送内容
 		javaMailSender.send(message);
