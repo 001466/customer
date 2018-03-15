@@ -46,7 +46,23 @@ public class OrdersServiceImpl implements OrdersService {
 	
 	private String parseMailContent(Orders o){
 		StringBuilder sb=new StringBuilder();
-		sb.append(o.getId()).append(" \t ").append(o.getType()).append(" \t "). append(o.getCustomName()).append(" \t ").append(o.getCustomMobile()).append(" \t ").append(o.getProductMaterial()).append(" \t ").append(o.getProductBranch()).append(" \t ").append(o.getCustomVisitUrl()).append("\r\n");
+		sb
+		.append(o.getId()).append(" \t ")
+		.append(o.getType()).append(" \t\t ")
+		
+		.append(o.getCustomName()).append(" \t ")
+		.append(o.getCustomMobile()).append(" \t\t ")
+		
+		.append(o.getProductMaterial()).append(" \t ")
+		.append(o.getProductBranch()).append(" \t\t ")
+		
+		.append(o.getDeliverProvince()).append(" \t ")
+		.append(o.getDeliverCity()).append(" \t ")
+		.append(o.getDeliverCounty()).append(" \t ")
+		.append(o.getDeliverAdderss()).append(" \t ")
+		.append(o.getDeliverTime()).append(" \t\t ")
+		
+		.append(o.getCustomVisitUrl()).append("\r\n");
 		return sb.toString();
 	}
 
