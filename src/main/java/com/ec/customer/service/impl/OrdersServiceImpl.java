@@ -61,9 +61,16 @@ public class OrdersServiceImpl implements OrdersService {
 		.append("邮寄地区:").append(o.getDeliverCounty()).append("\r\n")
 		.append("详细地址:").append(o.getDeliverAdderss()).append("\r\n")
 		.append("方便时间:").append(o.getDeliverTime()).append("\r\n")
+		.append("客户留言:").append(o.getCustomContent()).append("\r\n")
+		
 		
 		.append("下单网址:").append(o.getCustomVisitUrl()).append("\r\n")
 		.append("订单来源:").append(o.getCustomFrom()).append("\r\n")
+		
+		.append("操作时间:").append(df.format(o.getCreatetime())).append("\r\n")
+		.append("操作网关:").append(o.getCreateip()).append("\r\n")
+		.append("操作工具:").append(o.getBrowserOs()).append(",").append(o.getBrowserName()) .append("\r\n")
+		.append("入库速率:").append(o.getRateUnit()).append(",").append(o.getRateVal()).append("\r\n")
 		
 		
 		
