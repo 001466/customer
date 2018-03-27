@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -11,6 +13,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Service;
 
+import com.ec.customer.controller.OrderController;
 import com.ec.customer.dao.OrdersMapper;
 import com.ec.customer.model.Orders;
 import com.ec.customer.service.OrdersService;
@@ -18,6 +21,8 @@ import com.ec.customer.service.OrdersService;
 @Service
 @EnableScheduling
 public class OrdersServiceImpl implements OrdersService {
+
+	private   static final Logger   LOGGER = LoggerFactory.getLogger(OrdersServiceImpl.class);
 
 	@Autowired
 	private OrdersMapper ordersMapper;
@@ -40,6 +45,7 @@ public class OrdersServiceImpl implements OrdersService {
 		message.setSubject(df.format(new Date())+" Order Notify"); // 发送标题
 		message.setText(content); // 发送内容
 		javaMailSender.send(message);
+		LOGGER.warn("Mail to:"+to);
 	}
 	
 	

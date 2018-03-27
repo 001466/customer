@@ -1,4 +1,4 @@
-package com.ec.customer.queue;
+/*package com.ec.customer.queue;
 
 import org.springframework.stereotype.Component;
 
@@ -29,3 +29,4 @@ public class VisitersQueueService extends QueueService<QueueExec<?>>{
 	}
 
 }
+*/
