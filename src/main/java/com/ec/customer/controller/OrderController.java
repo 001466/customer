@@ -1,5 +1,6 @@
 package com.ec.customer.controller;
 
+import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -46,8 +47,8 @@ public class OrderController extends BaseController implements InitializingBean,
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(OrderController.class);
 
-	//@Autowired
-	//OrdersQueueService ordersQueueService;
+	// @Autowired
+	// OrdersQueueService ordersQueueService;
 
 	@Autowired
 	OrdersService ordersService;
@@ -92,16 +93,15 @@ public class OrderController extends BaseController implements InitializingBean,
 		return new Response<String>(Response.Code.SUCCESS.getValue());
 	}
 
-	
-	static final String TASK_NAME="orders-insert-task";
-	
+	static final String TASK_NAME = "orders-insert-task";
+
 	private ExecutorService executor;
 
 	@Override
 	public void destroy() throws Exception {
 		if (this.executor != null) {
 			this.executor.shutdown();
-			LOGGER.info("Destroy ExecutorService:"+TASK_NAME);
+			LOGGER.info("Destroy ExecutorService:" + TASK_NAME);
 		}
 
 	}
@@ -115,6 +115,15 @@ public class OrderController extends BaseController implements InitializingBean,
 
 				Thread t = new Thread(r, TASK_NAME);
 
+				t.setUncaughtExceptionHandler(new UncaughtExceptionHandler() {
+					
+					@Override
+					public void uncaughtException(Thread t, Throwable e) {
+						executor.execute(new OrdersInsertTask());
+					}
+					
+				} );
+				
 				LOGGER.info("Initializing Thread:" + t.getName() + ",Priority:" + t.getPriority());
 
 				return t;
@@ -129,50 +138,47 @@ public class OrderController extends BaseController implements InitializingBean,
 	private class OrdersInsertTask implements Runnable {
 		@Override
 		public void run() {
-			try{
-				while (!Thread.interrupted()) {
+
+			while (!Thread.interrupted()) {
+				try {
 					
-					LOGGER.info("Check orders:" + orderQueue.size());
-					
-					if (orderQueue.size() == 0){
-						
+					//LOGGER.info("Check orders:" + orderQueue.size());
+
+					if (orderQueue.size() == 0) {
+
 						TimeUnit.SECONDS.sleep(rateUnit);
 						continue;
-						
+
 					}
-						 
-	
+
 					List<Orders> list = new ArrayList<>();
-	
+
 					orderQueue.drainTo(list);
-					
+
 					int converted = list.size() > rateLimit ? -1 : 0;
-					
+
 					for (Orders orders : list) {
-	
+
 						orders.setStatus(converted);
-	
+
 						orders.setRateUnit(String.valueOf(rateUnit) + "s");
 						orders.setRateVal(list.size());
 						orders.setId(IDGen.next());
 						orders.setCreatedate(new Date());
 						orders.setCreatetime(new Date());
-						
+
 					}
-					
+
 					ordersService.insert(list);
-					
+
 					TimeUnit.SECONDS.sleep(rateUnit);
-					
+				} catch (Exception e) {
+					LOGGER.error(e.getMessage(), e);
 				}
-			}catch(Exception e){
-				LOGGER.error(e.getMessage(),e);
+
 			}
 
 		}
 	}
-	
-	
-	 
 
 }

@@ -34,8 +34,8 @@ public class VisitorController extends BaseController implements InitializingBea
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(VisitorController.class);
 
-	//@Autowired
-	//VisitersQueueService visitersQueueService;
+	// @Autowired
+	// VisitersQueueService visitersQueueService;
 
 	@Autowired
 	VisitorsService visitorsService;
@@ -58,14 +58,13 @@ public class VisitorController extends BaseController implements InitializingBea
 
 		/*
 		 * UserAgent userAgent =
-		 * UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
-		 * Browser browser = userAgent.getBrowser(); OperatingSystem os =
+		 * UserAgent.parseUserAgentString(request.getHeader("User-Agent")); Browser
+		 * browser = userAgent.getBrowser(); OperatingSystem os =
 		 * userAgent.getOperatingSystem();
 		 * 
 		 * visitors.setBrowserName(browser.getName());
 		 * visitors.setBrowserOs(os.getName());
-		 * visitors.setCreateip(getRemoteAddr(request));
-		 * orderQueue.offer(visitors);
+		 * visitors.setCreateip(getRemoteAddr(request)); orderQueue.offer(visitors);
 		 */
 
 		return new Response<String>(Response.Code.SUCCESS.getValue());
@@ -87,34 +86,36 @@ public class VisitorController extends BaseController implements InitializingBea
 	@Override
 	public void afterPropertiesSet() throws Exception {
 
-		/*this.executor = Executors.newSingleThreadExecutor(new ThreadFactory() {
-			@Override
-			public Thread newThread(Runnable r) {
-
-				Thread t = new Thread(r, TASK_NAME);
-
-				LOGGER.info("Initializing Thread:" + t.getName() + ",Priority:" + t.getPriority());
-
-				return t;
-
-			}
-		});
-
-		executor.execute(new VisitorsInsertTask());*/
+		/*
+		 * this.executor = Executors.newSingleThreadExecutor(new ThreadFactory() {
+		 * 
+		 * @Override public Thread newThread(Runnable r) {
+		 * 
+		 * Thread t = new Thread(r, TASK_NAME);
+		 * 
+		 * LOGGER.info("Initializing Thread:" + t.getName() + ",Priority:" +
+		 * t.getPriority());
+		 * 
+		 * return t;
+		 * 
+		 * } });
+		 * 
+		 * executor.execute(new VisitorsInsertTask());
+		 */
 
 	}
 
 	private class VisitorsInsertTask implements Runnable {
 		@Override
 		public void run() {
-			try {
-				while (!Thread.interrupted()) {
 
-					if (visitorQueue.size() == 0){
+			while (!Thread.interrupted()) {
+				try {
+					if (visitorQueue.size() == 0) {
 
 						TimeUnit.SECONDS.sleep(rateUnit);
 						continue;
-					
+
 					}
 
 					List<Visitors> list = new ArrayList<>();
@@ -133,10 +134,10 @@ public class VisitorController extends BaseController implements InitializingBea
 					visitorsService.insert(list);
 
 					TimeUnit.SECONDS.sleep(rateUnit);
-
+				} catch (Exception e) {
+					LOGGER.error(e.getMessage(), e);
 				}
-			} catch (Exception e) {
-				LOGGER.error(e.getMessage(), e);
+
 			}
 
 		}
