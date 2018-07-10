@@ -67,4 +67,6 @@
   <classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-starter-mail/1.5.9.RELEASE/spring-boot-starter-mail-1.5.9.RELEASE.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/springframework/spring-context-support/4.3.13.RELEASE/spring-context-support-4.3.13.RELEASE.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/sun/mail/javax.mail/1.5.6/javax.mail-1.5.6.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-starter-actuator/1.5.9.RELEASE/spring-boot-starter-actuator-1.5.9.RELEASE.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-actuator/1.5.9.RELEASE/spring-boot-actuator-1.5.9.RELEASE.jar"/>
 </classpath>
